@@ -28,6 +28,15 @@ document.addEventListener('DOMContentLoaded', function() {
             header.style.background = '#fff';
             header.style.backdropFilter = 'none';
         }
+        
+        // 暗色主题下的导航栏效果
+        if (document.body.classList.contains('dark-theme')) {
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(45, 45, 45, 0.95)';
+            } else {
+                header.style.background = '#2d2d2d';
+            }
+        }
     });
 
     // 文章卡片点击效果
@@ -41,23 +50,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 主题切换功能
-    const themeToggle = document.createElement('button');
-    themeToggle.textContent = '切换主题';
-    themeToggle.className = 'theme-toggle';
-    themeToggle.style.position = 'fixed';
-    themeToggle.style.top = '80px';
-    themeToggle.style.right = '20px';
-    themeToggle.style.padding = '10px';
-    themeToggle.style.background = '#3498db';
-    themeToggle.style.color = 'white';
-    themeToggle.style.border = 'none';
-    themeToggle.style.borderRadius = '5px';
-    themeToggle.style.cursor = 'pointer';
-    
-    document.body.appendChild(themeToggle);
+    // 完整的主题切换功能
+    function initThemeToggle() {
+        // 创建主题切换按钮
+        const themeToggle = document.createElement('button');
+        themeToggle.textContent = '切换到暗色主题';
+        themeToggle.className = 'theme-toggle';
+        themeToggle.id = 'themeToggle';
+        
+        document.body.appendChild(themeToggle);
 
-    themeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-theme');
-    });
+        // 检查本地存储的主题偏好
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.textContent = '切换到亮色主题';
+        }
+
+        // 主题切换事件
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            
+            // 更新按钮文本
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggle.textContent = '切换到亮色主题';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '切换到暗色主题';
+                localStorage.setItem('theme', 'light');
+            }
+            
+            // 更新导航栏背景（立即应用，不等待滚动）
+            const header = document.querySelector('.header');
+            if (document.body.classList.contains('dark-theme')) {
+                header.style.background = '#2d2d2d';
+            } else {
+                header.style.background = '#fff';
+            }
+        });
+    }
+
+    // 初始化主题切换功能
+    initThemeToggle();
 });
