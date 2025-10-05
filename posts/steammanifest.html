@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Manifests 下载器</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬇️</text></svg>">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Steam Manifests 下载器</h1>
+        <div class="input-group">
+            <label for="id">请输入ID:</label>
+            <input type="text" id="id" placeholder="例如：7940">
+        </div>
+        <button onclick="downloadManifest()">下载</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function downloadManifest() {
+            // 获取用户输入的ID
+            const id = document.getElementById('id').value;
+            
+            // 检查ID是否为空
+            if (!id) {
+                showMessage('请输入ID', 'error');
+                return;
+            }
+            
+            // 构建下载URL
+            const url = `https://ghproxy.net/https://github.com/SteamAutoCracks/ManifestHub/archive/refs/heads/${id}.zip`;
+            
+            // 显示下载信息
+            showMessage(`正在准备下载: ${url}`, 'success');
+            
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${id}.zip`;
+            link.style.display = 'none';
+            
+            // 添加到页面并触发下载
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // 显示成功信息
+            showMessage(`已开始下载 ${id}.zip`, 'success');
+        }
+        
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+        }
+    </script>
+</body>
+</html>
