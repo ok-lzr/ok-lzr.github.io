@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恭喜发现隐藏彩蛋！</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .advice-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            position: relative;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .advice {
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            line-height: 1.4;
+        }
+        
+        .quote-mark {
+            font-size: 4rem;
+            position: absolute;
+            opacity: 0.3;
+        }
+        
+        .quote-left {
+            top: 10px;
+            left: 20px;
+        }
+        
+        .quote-right {
+            bottom: 10px;
+            right: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+            animation: fall linear forwards;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+            animation: explode 1s ease-out forwards;
+        }
+        
+        @keyframes explode {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(var(--y)) translateX(var(--x)) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        .egg {
+            width: 100px;
+            height: 130px;
+            background: linear-gradient(135deg, #ffdd00, #ff9500);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            margin: 30px auto;
+            position: relative;
+            animation: bounce 2s infinite alternate;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        
+        .egg::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        
+        .message {
+            margin: 20px 0;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .wisdom-note {
+            margin-top: 25px;
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        
+        .new-advice-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .new-advice-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-text {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="egg" id="wisdomEgg"></div>
+        <h1>恭喜！</h1>
+        <p>你成功找到了博客的隐藏彩蛋！</p>
+        <p class="message">"好奇心是探索世界的起点，恭喜你拥有这份宝贵的品质！"</p>
+        <p>作为奖励，这里有一句智慧忠告：</p>
+        
+        <div class="advice-container">
+            <div class="quote-mark quote-left">"</div>
+            <div class="advice" id="adviceText">真正的发现之旅不在于寻找新风景，而在于拥有新的眼光。</div>
+            <div class="quote-mark quote-right">"</div>
+        </div>
+        
+        <button class="new-advice-btn" id="newAdviceBtn">获取另一条忠告</button>
+        
+        <p class="wisdom-note">每一次探索都让我们离真理更近一步。保持好奇心，继续在知识的海洋中航行！</p>
+        
+        <a href="index.html" class="btn">返回博客首页</a>
+        <div class="footer-text">感谢你的探索精神！</div>
+    </div>
+
+    <script>
+        // 忠告库
+        const adviceList = [
+            "真正的发现之旅不在于寻找新风景，而在于拥有新的眼光。",
+            "知识不是用来炫耀的武器，而是照亮前路的灯塔。",
+            "最珍贵的礼物不是答案，而是提出好问题的能力。",
+            "智慧不在于知道所有答案，而在于敢于质疑已知的一切。",
+            "阅读是与伟大灵魂对话，写作是与未来自己交谈。",
+            "好奇心是知识的种子，行动是智慧的果实。",
+            "最深刻的真理往往隐藏在表面之下，等待被发现。",
+            "学习不是填充空容器，而是点燃思想的火焰。",
+            "真正的探索者不仅寻找答案，更懂得欣赏问题本身的美。",
+            "每一次点击链接，都是开启一扇通往新世界的大门。"
+        ];
+        
+        // 创建彩带效果
+        function createConfetti() {
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    // 移除元素以保持性能
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 30);
+            }
+        }
+        
+        // 创建烟花效果
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + 'vw';
+            firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            
+            // 随机爆炸方向
+            const x = (Math.random() - 0.5) * 200;
+            const y = (Math.random() - 0.5) * 200;
+            firework.style.setProperty('--x', x + 'px');
+            firework.style.setProperty('--y', y + 'px');
+            
+            document.body.appendChild(firework);
+            
+            // 移除元素以保持性能
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+        
+        // 获取随机忠告
+        function getRandomAdvice() {
+            const randomIndex = Math.floor(Math.random() * adviceList.length);
+            return adviceList[randomIndex];
+        }
+        
+        // 更新忠告文本
+        function updateAdvice() {
+            const adviceElement = document.getElementById('adviceText');
+            adviceElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                adviceElement.textContent = getRandomAdvice();
+                adviceElement.style.opacity = 1;
+                
+                // 添加庆祝效果
+                createConfetti();
+                for(let i = 0; i < 10; i++) {
+                    setTimeout(() => createFirework(), i * 100);
+                }
+            }, 500);
+        }
+        
+        // 初始化效果
+        document.addEventListener('DOMContentLoaded', () => {
+            createConfetti();
+            
+            // 持续创建烟花
+            setInterval(() => {
+                createFirework();
+            }, 500);
+            
+            // 绑定忠告更新事件
+            document.getElementById('newAdviceBtn').addEventListener('click', updateAdvice);
+            document.getElementById('wisdomEgg').addEventListener('click', updateAdvice);
+        });
+    </script>
+</body>
+</html>
