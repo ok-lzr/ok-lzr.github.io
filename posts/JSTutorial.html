@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入门教程 - 专为初学者设计</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ffd93d;
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 217, 61, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: #ffcd00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 217, 61, 0.6);
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 10px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        nav a:hover {
+            background-color: #f093fb;
+        }
+        
+        .content {
+            display: flex;
+            padding: 30px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-right: 30px;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f093fb;
+            font-size: 1.4rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .sidebar li:before {
+            content: "•";
+            color: #f093fb;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .sidebar a {
+            color: #f093fb;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+        
+        .sidebar a:hover {
+            background-color: #fceaff;
+            transform: translateX(5px);
+        }
+        
+        .main-content {
+            flex: 3;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f093fb;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #f093fb;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        h4 {
+            color: #2c3e50;
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 1rem;
+            border-left: 5px solid #f093fb;
+        }
+        
+        .example {
+            background-color: #fdf2ff;
+            border-left: 5px solid #f093fb;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .note {
+            background-color: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .note-title {
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note-title:before {
+            content: "💡";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .warning {
+            background-color: #ffe6e6;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .warning-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            background-color: #e6f7e6;
+            border-left: 5px solid #2ecc71;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .success-title {
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .success-title:before {
+            content: "✅";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .visual-example {
+            background-color: #f8f9fa;
+            border: 2px dashed #f093fb;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: #f093fb;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .tag-demo {
+            display: inline-block;
+            background: #f093fb;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .demo-box {
+            border: 2px solid #f093fb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fdf2ff;
+        }
+        
+        .interactive-demo {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #f093fb;
+        }
+        
+        .demo-button {
+            background: #f093fb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        
+        .demo-button:hover {
+            background: #e482f0;
+        }
+        
+        .demo-output {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            min-height: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: static;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* 演示样式 */
+        .demo-text {
+            font-size: 1.2rem;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .color-box {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>JavaScript入门教程</h1>
+                <p>让网页动起来 - 专为初学者设计的编程之旅</p>
+                <a href="#what-is-js" class="cta-button">开始学习 →</a>
+            </div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#what-is-js">什么是JS</a></li>
+                <li><a href="#basics">基础语法</a></li>
+                <li><a href="#variables">变量与数据类型</a></li>
+                <li><a href="#functions">函数</a></li>
+                <li><a href="#dom">DOM操作</a></li>
+                <li><a href="#events">事件处理</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <aside class="sidebar">
+                <h3>学习路线</h3>
+                <ul>
+                    <li><a href="#what-is-js">什么是JavaScript？</a></li>
+                    <li><a href="#how-js-works">JS如何工作</a></li>
+                    <li><a href="#first-program">第一个JS程序</a></li>
+                    <li><a href="#variables">变量和常量</a></li>
+                    <li><a href="#data-types">数据类型</a></li>
+                    <li><a href="#operators">运算符</a></li>
+                    <li><a href="#conditionals">条件判断</a></li>
+                    <li><a href="#loops">循环</a></li>
+                    <li><a href="#functions">函数</a></li>
+                    <li><a href="#arrays">数组</a></li>
+                    <li><a href="#objects">对象</a></li>
+                    <li><a href="#dom">DOM操作</a></li>
+                    <li><a href="#events">事件处理</a></li>
+                    <li><a href="#practice">动手练习</a></li>
+                </ul>
+            </aside>
+            
+            <main class="main-content">
+                <section id="what-is-js">
+                    <h2>什么是JavaScript？</h2>
+                    <p>JavaScript是网页的"大脑"，它负责让网页变得智能和交互。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把网页想象成一个机器人：</p>
+                        <ul>
+                            <li><strong>HTML</strong> = 机器人的身体和结构</li>
+                            <li><strong>CSS</strong> = 机器人的外观和衣服</li>
+                            <li><strong>JavaScript</strong> = 机器人的大脑和行为</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>JavaScript能做什么？</h3>
+                    <div class="demo-box">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                <h4>响应用户操作</h4>
+                                <p>点击、滚动、输入等</p>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                <h4>动态更新内容</h4>
+                                <p>无需刷新页面</p>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                <h4>动画效果</h4>
+                                <p>让元素动起来</p>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                                <h4>数据处理</h4>
+                                <p>计算、验证、存储</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="success">
+                        <div class="success-title">好消息！</div>
+                        <p>JavaScript是世界上最流行的编程语言之一！学习它，你就能创建交互式网页、移动应用，甚至是游戏！</p>
+                    </div>
+                </section>
+                
+                <section id="how-js-works">
+                    <h2>JavaScript如何工作</h2>
+                    <p>JavaScript在浏览器中运行，可以直接操作网页内容。</p>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>浏览器加载HTML和CSS</h3>
+                            <p>先创建网页的结构和样式</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>执行JavaScript</h3>
+                            <p>浏览器运行JS代码，让网页变得智能</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>响应用户操作</h3>
+                            <p>JS监听用户行为并做出响应</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>更新页面</h3>
+                            <p>动态改变网页内容和样式</p>
+                        </div>
+                    </div>
+                    
+                    <h3>在HTML中使用JavaScript</h3>
+                    
+                    <div class="code-block">&lt;!-- 1. 内部JavaScript --&gt;
+&lt;script&gt;
+    alert('Hello, World!');
+&lt;/script&gt;
+
+&lt;!-- 2. 外部JavaScript文件 --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;!-- 3. 行内事件处理 --&gt;
+&lt;button onclick="alert('按钮被点击了!')"&gt;点击我&lt;/button&gt;</div>
+                    
+                    <div class="note">
+                        <div class="note-title">最佳实践</div>
+                        <p>推荐使用<strong>外部JavaScript文件</strong>，因为：</p>
+                        <ul>
+                            <li>代码更整洁</li>
+                            <li>易于维护</li>
+                            <li>可以在多个页面重复使用</li>
+                            <li>浏览器可以缓存JS文件，加载更快</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="first-program">
+                    <h2>第一个JavaScript程序</h2>
+                    <p>让我们从经典的"Hello, World!"开始。</p>
+                    
+                    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;我的第一个JS程序&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id="greeting"&gt;欢迎来到我的网页&lt;/h1&gt;
+    &lt;button onclick="sayHello()"&gt;点击我&lt;/button&gt;
+    
+    &lt;script&gt;
+        function sayHello() {
+            // 获取页面元素
+            const greeting = document.getElementById('greeting');
+            // 修改元素内容
+            greeting.textContent = 'Hello, World!';
+            // 改变样式
+            greeting.style.color = 'red';
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>试试看：</h4>
+                        <h1 id="demo-greeting" style="color: #333; transition: color 0.3s;">欢迎来到我的网页</h1>
+                        <button class="demo-button" onclick="document.getElementById('demo-greeting').textContent = 'Hello, World!'; document.getElementById('demo-greeting').style.color = 'red';">点击我</button>
+                        <button class="demo-button" onclick="document.getElementById('demo-greeting').textContent = '欢迎来到我的网页'; document.getElementById('demo-greeting').style.color = '#333';">重置</button>
+                    </div>
+                    
+                    <div class="success">
+                        <div class="success-title">恭喜！</div>
+                        <p>你刚刚创建了第一个交互式JavaScript程序！点击按钮时，文字内容和颜色都发生了变化。</p>
+                    </div>
+                </section>
+                
+                <section id="variables">
+                    <h2>变量和常量</h2>
+                    <p>变量就像存储数据的"盒子"，可以存放各种信息。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把变量想象成贴有标签的储物盒：</p>
+                        <ul>
+                            <li><strong>变量名</strong> = 盒子上的标签</li>
+                            <li><strong>变量值</strong> = 盒子里的东西</li>
+                            <li><strong>声明变量</strong> = 准备一个新盒子</li>
+                            <li><strong>赋值</strong> = 往盒子里放东西</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>声明变量</h3>
+                    <div class="code-block">// 使用 let 声明变量（可以改变）
+let age = 25;
+age = 26;  // 可以重新赋值
+
+// 使用 const 声明常量（不能改变）
+const name = "小明";
+// name = "小红";  // 这行会报错！
+
+// 使用 var（老式方法，不推荐新手使用）
+var city = "北京";</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>变量演示：</h4>
+                        <div class="demo-output" id="variable-demo">
+                            点击按钮查看变量值
+                        </div>
+                        <button class="demo-button" onclick="
+                            const player = '小明';
+                            score = 100;
+                            document.getElementById('variable-demo').innerHTML = 
+                                '玩家: ' + player + '&lt;br&gt;分数: ' + score;
+                        ">显示变量</button>
+                    </div>
+                    
+                    <div class="warning">
+                        <div class="warning-title">命名规则</div>
+                        <ul>
+                            <li>变量名可以包含字母、数字、下划线和美元符号</li>
+                            <li>不能以数字开头</li>
+                            <li>区分大小写（age 和 Age 是不同的变量）</li>
+                            <li>使用有意义的名称（如 userName 而不是 a）</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="data-types">
+                    <h2>数据类型</h2>
+                    <p>JavaScript中的数据类型就像是不同种类的"物品"。</p>
+                    
+                    <h3>基本数据类型</h3>
+                    <div class="code-block">// 1. 字符串 (String) - 文本
+let name = "张三";
+let message = 'Hello World';
+
+// 2. 数字 (Number) - 数值
+let age = 25;
+let price = 99.99;
+
+// 3. 布尔值 (Boolean) - 真或假
+let isStudent = true;
+let isWorking = false;
+
+// 4. 空值 (Null) - 空
+let emptyValue = null;
+
+// 5. 未定义 (Undefined) - 未赋值
+let undefinedValue;
+
+// 6. 检查数据类型
+console.log(typeof name);     // "string"
+console.log(typeof age);      // "number"
+console.log(typeof isStudent); // "boolean"</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>数据类型检查：</h4>
+                        <div class="demo-output" id="type-demo">
+                            点击按钮检查数据类型
+                        </div>
+                        <button class="demo-button" onclick="
+                            let text = 'Hello';
+                            let number = 42;
+                            let bool = true;
+                            document.getElementById('type-demo').innerHTML = 
+                                text + ' 的类型是: ' + typeof text + '<br>' +
+                                number + ' 的类型是: ' + typeof number + '<br>' +
+                                bool + ' 的类型是: ' + typeof bool;
+                        ">检查类型</button>
+                    </div>
+                </section>
+                
+                <section id="operators">
+                    <h2>运算符</h2>
+                    <p>运算符用于对值进行运算，就像数学中的加减乘除。</p>
+                    
+                    <h3>算术运算符</h3>
+                    <div class="code-block">let a = 10;
+let b = 3;
+
+// 加法
+let sum = a + b;      // 13
+
+// 减法
+let difference = a - b; // 7
+
+// 乘法
+let product = a * b;   // 30
+
+// 除法
+let quotient = a / b;  // 3.333...
+
+// 取余 (求余数)
+let remainder = a % b; // 1
+
+// 自增
+a++;  // a 变成 11
+
+// 自减
+b--;  // b 变成 2</div>
+                    
+                    <h3>比较运算符</h3>
+                    <div class="code-block">let x = 5;
+let y = 10;
+
+console.log(x == y);   // false (相等)
+console.log(x != y);   // true  (不相等)
+console.log(x > y);    // false (大于)
+console.log(x < y);    // true  (小于)
+console.log(x >= 5);   // true  (大于等于)
+console.log(y <= 10);  // true  (小于等于)
+
+// 严格相等 (推荐使用)
+console.log(5 == '5');  // true  (值相等)
+console.log(5 === '5'); // false (值和类型都相等)</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>计算器演示：</h4>
+                        <div style="margin: 15px 0;">
+                            <input type="number" id="num1" value="10" style="padding: 8px; width: 80px;">
+                            <select id="operator" style="padding: 8px; margin: 0 10px;">
+                                <option value="+">+</option>
+                                <option value="-">-</option>
+                                <option value="*">×</option>
+                                <option value="/">÷</option>
+                            </select>
+                            <input type="number" id="num2" value="5" style="padding: 8px; width: 80px;">
+                        </div>
+                        <button class="demo-button" onclick="
+                            let num1 = parseInt(document.getElementById('num1').value);
+                            let num2 = parseInt(document.getElementById('num2').value);
+                            let operator = document.getElementById('operator').value;
+                            let result1;
+                            
+                            if (operator === '+') result1 = num1 + num2;
+                            else if (operator === '-') result1 = num1 - num2;
+                            else if (operator === '*') result1 = num1 * num2;
+                            else if (operator === '/') result1 = num1 / num2;
+                            
+                            document.getElementById('calc-result').textContent = '结果: ' + result1;
+                        ">计算</button>
+                        <div class="demo-output" id="calc-result">结果将显示在这里</div>
+                    </div>
+                </section>
+                
+                <section id="conditionals">
+                    <h2>条件判断</h2>
+                    <p>条件判断让程序能够根据不同情况做出不同决定。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>就像日常生活中的选择：</p>
+                        <ul>
+                            <li><strong>如果</strong> 下雨，<strong>那么</strong> 带伞</li>
+                            <li><strong>否则如果</strong> 晴天，<strong>那么</strong> 戴太阳镜</li>
+                            <li><strong>否则</strong> 正常出门</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>if...else 语句</h3>
+                    <div class="code-block">let age = 18;
+
+// 简单的 if 语句
+if (age >= 18) {
+    console.log('你是成年人');
+}
+
+// if...else 语句
+if (age >= 18) {
+    console.log('可以投票');
+} else {
+    console.log('还不能投票');
+}
+
+// if...else if...else 语句
+let score = 85;
+
+if (score >= 90) {
+    console.log('优秀');
+} else if (score >= 80) {
+    console.log('良好');
+} else if (score >= 60) {
+    console.log('及格');
+} else {
+    console.log('不及格');
+}</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>成绩判断器：</h4>
+                        <input type="number" id="score-input" placeholder="输入分数 (0-100)" style="padding: 8px; width: 200px; margin-right: 10px;">
+                        <button class="demo-button" onclick="
+                            let score = parseInt(document.getElementById('score-input').value);
+                            let result = document.getElementById('grade-result');
+                            
+                            if (score >= 90) {
+                                result.textContent = '优秀！🎉';
+                                result.style.color = 'green';
+                            } else if (score >= 80) {
+                                result.textContent = '良好！👍';
+                                result.style.color = 'blue';
+                            } else if (score >= 60) {
+                                result.textContent = '及格 ✅';
+                                result.style.color = 'orange';
+                            } else if (score >= 0) {
+                                result.textContent = '不及格 ❌';
+                                result.style.color = 'red';
+                            } else {
+                                result.textContent = '请输入有效分数';
+                                result.style.color = 'gray';
+                            }
+                        ">判断成绩</button>
+                        <div class="demo-output" id="grade-result">请输入分数查看结果</div>
+                    </div>
+                </section>
+                
+                <section id="loops">
+                    <h2>循环</h2>
+                    <p>循环让程序能够重复执行某些操作。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>就像生活中的重复动作：</p>
+                        <ul>
+                            <li><strong>for循环</strong> = 我知道要重复多少次（如：做10个俯卧撑）</li>
+                            <li><strong>while循环</strong> = 重复直到条件满足（如：读书直到理解为止）</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>for 循环</h3>
+                    <div class="code-block">// 基本的 for 循环
+for (let i = 1; i <= 5; i++) {
+    console.log('这是第 ' + i + ' 次循环');
+}
+
+// 输出：这是第 1 次循环
+//       这是第 2 次循环
+//       ... 一直到第 5 次
+
+// 循环遍历数组
+let fruits = ['苹果', '香蕉', '橙子'];
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}</div>
+                    
+                    <h3>while 循环</h3>
+                    <div class="code-block">// while 循环
+let count = 1;
+while (count <= 3) {
+    console.log('计数: ' + count);
+    count++;  // 不要忘记这个，否则会无限循环！
+}
+
+// do...while 循环 (至少执行一次)
+let number = 1;
+do {
+    console.log('数字: ' + number);
+    number++;
+} while (number <= 3);</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>循环演示：</h4>
+                        <button class="demo-button" onclick="
+                            let output = document.getElementById('loop-output');
+                            output.innerHTML = '';
+                            for (let i = 1; i <= 5; i++) {
+                                output.innerHTML += '第 ' + i + ' 次循环<br>';
+                            }
+                        ">运行for循环</button>
+                        <button class="demo-button" onclick="
+                            let output = document.getElementById('loop-output');
+                            output.innerHTML = '';
+                            let i = 1;
+                            while (i <= 5) {
+                                output.innerHTML += 'while循环: ' + i + '<br>';
+                                i++;
+                            }
+                        ">运行while循环</button>
+                        <div class="demo-output" id="loop-output">循环结果将显示在这里</div>
+                    </div>
+                </section>
+                
+                <section id="functions">
+                    <h2>函数</h2>
+                    <p>函数是一段可以重复使用的代码块。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把函数想象成一台机器：</p>
+                        <ul>
+                            <li><strong>输入</strong> = 原料（参数）</li>
+                            <li><strong>处理</strong> = 机器工作（函数体）</li>
+                            <li><strong>输出</strong> = 产品（返回值）</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>定义和调用函数</h3>
+                    <div class="code-block">// 定义函数
+function greet(name) {
+    return '你好, ' + name + '!';
+}
+
+// 调用函数
+let message = greet('小明');
+console.log(message);  // "你好, 小明!"
+
+// 另一个例子：计算面积
+function calculateArea(width, height) {
+    let area = width * height;
+    return area;
+}
+
+let roomArea = calculateArea(5, 4);
+console.log('房间面积: ' + roomArea + '平方米');</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>函数演示：</h4>
+                        <input type="number" id="width" placeholder="宽度" style="padding: 8px; width: 100px; margin: 5px;">
+                        <input type="number" id="height" placeholder="高度" style="padding: 8px; width: 100px; margin: 5px;">
+                        <button class="demo-button" onclick="
+                            function calculateArea(w, h) {
+                                return w * h;
+                            }
+                            
+                            let width = parseInt(document.getElementById('width').value);
+                            let height = parseInt(document.getElementById('height').value);
+                            let area = calculateArea(width, height);
+                            
+                            document.getElementById('area-result').textContent = 
+                                '面积: ' + area + ' 平方单位';
+                        ">计算面积</button>
+                        <div class="demo-output" id="area-result">面积将显示在这里</div>
+                    </div>
+                </section>
+                
+                <section id="arrays">
+                    <h2>数组</h2>
+                    <p>数组是存储多个值的"列表"。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把数组想象成一个有很多格子的储物柜：</p>
+                        <ul>
+                            <li><strong>每个格子</strong> = 数组元素</li>
+                            <li><strong>格子编号</strong> = 索引（从0开始）</li>
+                            <li><strong>储物柜容量</strong> = 数组长度</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>数组操作</h3>
+                    <div class="code-block">// 创建数组
+let fruits = ['苹果', '香蕉', '橙子'];
+let numbers = [1, 2, 3, 4, 5];
+
+// 访问数组元素
+console.log(fruits[0]);  // "苹果" (索引从0开始)
+console.log(fruits[1]);  // "香蕉"
+
+// 修改数组元素
+fruits[2] = '葡萄';      // 把橙子改成葡萄
+
+// 数组长度
+console.log(fruits.length);  // 3
+
+// 添加元素
+fruits.push('草莓');     // 在末尾添加
+fruits.unshift('梨');    // 在开头添加
+
+// 删除元素
+fruits.pop();           // 删除最后一个
+fruits.shift();         // 删除第一个</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>购物车演示：</h4>
+                        <input type="text" id="item-input" placeholder="输入商品名称" style="padding: 8px; width: 150px; margin-right: 10px;">
+                        <button class="demo-button" onclick="
+                            let item = document.getElementById('item-input').value;
+                            if (item) {
+                                shoppingCart.push(item);
+                                updateCartDisplay();
+                                document.getElementById('item-input').value = '';
+                            }
+                        ">添加到购物车</button>
+                        <button class="demo-button" onclick="
+                            if (shoppingCart.length > 0) {
+                                shoppingCart.pop();
+                                updateCartDisplay();
+                            }
+                        ">删除最后一项</button>
+                        <div class="demo-output" id="cart-display">购物车是空的</div>
+                    </div>
+                    <script>
+                        let shoppingCart = [];
+                        function updateCartDisplay() {
+                            let display = document.getElementById('cart-display');
+                            if (shoppingCart.length === 0) {
+                                display.textContent = '购物车是空的';
+                            } else {
+                                display.innerHTML = '<strong>购物车内容:</strong><br>' + 
+                                    shoppingCart.map((item, index) => 
+                                        (index + 1) + '. ' + item
+                                    ).join('<br>');
+                            }
+                        }
+                    </script>
+                </section>
+                
+                <section id="objects">
+                    <h2>对象</h2>
+                    <p>对象是存储相关数据和功能的"容器"。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把对象想象成一个人的档案：</p>
+                        <ul>
+                            <li><strong>属性</strong> = 个人信息（姓名、年龄等）</li>
+                            <li><strong>方法</strong> = 人的行为（说话、走路等）</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>创建和使用对象</h3>
+                    <div class="code-block">// 创建对象
+let person = {
+    // 属性
+    name: '小明',
+    age: 20,
+    city: '北京',
+    
+    // 方法
+    introduce: function() {
+        return '我叫' + this.name + ', 今年' + this.age + '岁';
+    },
+    
+    celebrateBirthday: function() {
+        this.age++;
+        return this.name + '过生日了！现在' + this.age + '岁';
+    }
+};
+
+// 访问属性
+console.log(person.name);     // "小明"
+console.log(person['age']);   // 20
+
+// 调用方法
+console.log(person.introduce());  // "我叫小明, 今年20岁"
+console.log(person.celebrateBirthday()); // "小明过生日了！现在21岁"</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>人物档案：</h4>
+                        <button class="demo-button" onclick="
+                            let student = {
+                                name: '小红',
+                                age: 19,
+                                grade: '大一',
+                                
+                                study: function() {
+                                    return this.name + '正在努力学习...';
+                                },
+                                
+                                getInfo: function() {
+                                    return this.name + ', ' + this.age + '岁, ' + this.grade;
+                                }
+                            };
+                            
+                            document.getElementById('object-demo').innerHTML = 
+                                student.getInfo() + '<br>' + student.study();
+                        ">创建学生对象</button>
+                        <div class="demo-output" id="object-demo">点击按钮查看对象信息</div>
+                    </div>
+                </section>
+                
+                <section id="dom">
+                    <h2>DOM操作</h2>
+                    <p>DOM（文档对象模型）让JavaScript可以操作网页内容。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把DOM想象成网页的"遥控器"：</p>
+                        <ul>
+                            <li><strong>HTML元素</strong> = 电视机的各个部件</li>
+                            <li><strong>DOM</strong> = 遥控器</li>
+                            <li><strong>JavaScript</strong> = 按遥控器的人</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>常用DOM操作</h3>
+                    <div class="code-block">// 获取元素
+let title = document.getElementById('title');
+let paragraphs = document.getElementsByClassName('text');
+let buttons = document.querySelectorAll('button');
+
+// 修改内容
+title.textContent = '新的标题';
+title.innerHTML = '<strong>加粗的标题</strong>';
+
+// 修改样式
+title.style.color = 'red';
+title.style.fontSize = '24px';
+
+// 修改属性
+let image = document.getElementById('myImage');
+image.src = 'new-image.jpg';
+image.alt = '新图片';
+
+// 创建新元素
+let newDiv = document.createElement('div');
+newDiv.textContent = '我是新创建的元素';
+document.body.appendChild(newDiv);</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>DOM操作演示：</h4>
+                        <div id="dom-demo" style="padding: 15px; background: #e9ecef; border-radius: 5px; margin: 10px 0;">
+                            这是一个可以改变的元素
+                        </div>
+                        <button class="demo-button" onclick="
+                            let demo = document.getElementById('dom-demo');
+                            demo.textContent = '内容已改变！';
+                            demo.style.background = '#ff6b6b';
+                            demo.style.color = 'white';
+                        ">改变内容和样式</button>
+                        <button class="demo-button" onclick="
+                            let demo = document.getElementById('dom-demo');
+                            demo.innerHTML = '<strong>HTML内容</strong> 和 <em>斜体文字</em>';
+                            demo.style.background = '#4ecdc4';
+                            demo.style.color = 'white';
+                        ">添加HTML</button>
+                        <button class="demo-button" onclick="
+                            let demo = document.getElementById('dom-demo');
+                            demo.textContent = '这是一个可以改变的元素';
+                            demo.style.background = '#e9ecef';
+                            demo.style.color = '#333';
+                        ">重置</button>
+                    </div>
+                </section>
+                
+                <section id="events">
+                    <h2>事件处理</h2>
+                    <p>事件处理让网页能够响应用户的操作。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">常见事件类型</div>
+                        <ul>
+                            <li><strong>鼠标事件</strong>：click（点击）、mouseover（鼠标悬停）</li>
+                            <li><strong>键盘事件</strong>：keydown（按键按下）、keyup（按键松开）</li>
+                            <li><strong>表单事件</strong>：submit（提交）、change（内容改变）</li>
+                            <li><strong>窗口事件</strong>：load（加载完成）、resize（调整大小）</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>事件处理方式</h3>
+                    <div class="code-block">// 1. HTML属性方式
+&lt;button onclick="handleClick()"&gt;点击我&lt;/button&gt;
+
+// 2. DOM属性方式
+let button = document.getElementById('myButton');
+button.onclick = function() {
+    alert('按钮被点击了！');
+};
+
+// 3. 事件监听器（推荐）
+button.addEventListener('click', function() {
+    console.log('按钮被点击了');
+});
+
+// 带参数的事件处理
+button.addEventListener('click', function(event) {
+    console.log('事件类型: ' + event.type);
+    console.log('点击的元素: ' + event.target);
+});</div>
+                    
+                    <div class="interactive-demo">
+                        <h4>事件演示：</h4>
+                        <div id="event-area" style="padding: 30px; background: #f8f9fa; border: 2px dashed #f093fb; border-radius: 10px; margin: 15px 0; text-align: center;">
+                            在这个区域试试各种操作
+                        </div>
+                        <div class="demo-output" id="event-log">事件日志将显示在这里</div>
+                        <button class="demo-button" onclick="document.getElementById('event-log').textContent = '事件日志将显示在这里'">清空日志</button>
+                    </div>
+                    <script>
+                        const eventArea = document.getElementById('event-area');
+                        const eventLog = document.getElementById('event-log');
+                        
+                        eventArea.addEventListener('click', function() {
+                            eventLog.textContent += '点击事件\n';
+                        });
+                        
+                        eventArea.addEventListener('mouseover', function() {
+                            eventArea.style.background = '#e9ecef';
+                        });
+                        
+                        eventArea.addEventListener('mouseout', function() {
+                            eventArea.style.background = '#f8f9fa';
+                        });
+                    </script>
+                </section>
+                
+                <section id="practice">
+                    <h2>动手练习</h2>
+                    <p>让我们创建一个简单的待办事项应用，练习学到的JavaScript知识。</p>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>创建HTML结构</h3>
+                            <div class="code-block">&lt;div class="todo-app"&gt;
+    &lt;h2&gt;我的待办事项&lt;/h2&gt;
+    &lt;div class="input-area"&gt;
+        &lt;input type="text" id="todo-input" placeholder="添加新任务..."&gt;
+        &lt;button id="add-btn"&gt;添加&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;ul id="todo-list"&gt;&lt;/ul&gt;
+&lt;/div&gt;</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>添加JavaScript功能</h3>
+                            <div class="code-block">// 获取元素
+
+const todoInput = document.getElementById('todo-input');
+const addButton = document.getElementById('add-btn');
+const todoList = document.getElementById('todo-list');
+
+// 添加任务函数
+function addTodo() {
+    const taskText = todoInput.value.trim();
+    
+    if (taskText === '') {
+        alert('请输入任务内容！');
+        return;
+    }
+    
+    // 创建新任务项
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+        &lt;span&gt;${taskText}&lt;/span&gt;
+        &lt;button class="delete-btn"&gt;删除&lt;/button&gt;
+    `;
+    
+    // 添加到列表
+    todoList.appendChild(listItem);
+    
+    // 清空输入框
+    todoInput.value = '';
+    
+    // 添加删除功能
+    const deleteBtn = listItem.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', function() {
+        todoList.removeChild(listItem);
+    });
+}
+
+// 事件监听
+addButton.addEventListener('click', addTodo);
+todoInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addTodo();
+    }
+});</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>查看效果</h3>
+                            <div class="interactive-demo">
+                                <h4>待办事项应用：</h4>
+                                <div style="margin: 15px 0;">
+                                    <input type="text" id="practice-todo-input" placeholder="添加新任务..." style="padding: 8px; width: 200px; margin-right: 10px;">
+                                    <button class="demo-button" id="practice-add-btn">添加</button>
+                                </div>
+                                <ul id="practice-todo-list" style="text-align: left; margin: 15px 0; padding-left: 20px;"></ul>
+                            </div>
+                            <p>恭喜！你创建了一个功能完整的待办事项应用！</p>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        // 待办事项应用功能
+                        const practiceInput = document.getElementById('practice-todo-input');
+                        const practiceAddBtn = document.getElementById('practice-add-btn');
+                        const practiceList = document.getElementById('practice-todo-list');
+                        
+                        function addPracticeTodo() {
+                            const taskText = practiceInput.value.trim();
+                            
+                            if (taskText === '') {
+                                alert('请输入任务内容！');
+                                return;
+                            }
+                            
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `
+                                <span>${taskText}</span>
+                                <button class="demo-button" style="margin-left: 10px; padding: 5px 10px;">删除</button>
+                            `;
+                            
+                            practiceList.appendChild(listItem);
+                            practiceInput.value = '';
+                            
+                            const deleteBtn = listItem.querySelector('.demo-button');
+                            deleteBtn.addEventListener('click', function() {
+                                practiceList.removeChild(listItem);
+                            });
+                        }
+                        
+                        practiceAddBtn.addEventListener('click', addPracticeTodo);
+                        practiceInput.addEventListener('keypress', function(event) {
+                            if (event.key === 'Enter') {
+                                addPracticeTodo();
+                            }
+                        });
+                    </script>
+                    
+                    <div class="success">
+                        <div class="success-title">太棒了！</div>
+                        <p>你已经掌握了JavaScript的基础知识！继续练习，尝试创建更多有趣的应用。</p>
+                        <p>记住：编程最重要的是实践，多写代码，多解决问题，你的技能会快速提升！</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <footer>
+            <p>JavaScript入门教程 &copy; 2025 - 让网页动起来的魔法</p>
+            <p>记住：每个优秀的程序员都是从"Hello, World!"开始的，坚持下去，你也能创造令人惊叹的交互体验！</p>
+        </footer>
+    </div>
+</body>
+</html>
