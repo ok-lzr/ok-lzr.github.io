@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML高级教程 - 初学者也能理解</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #6a11cb;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: #5a0db5;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.6);
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 10px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        nav a:hover {
+            background-color: #3498db;
+        }
+        
+        .content {
+            display: flex;
+            padding: 30px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-right: 30px;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff7e5f;
+            font-size: 1.4rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .sidebar li:before {
+            content: "•";
+            color: #ff7e5f;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .sidebar a {
+            color: #ff7e5f;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+        
+        .sidebar a:hover {
+            background-color: #fff0eb;
+            transform: translateX(5px);
+        }
+        
+        .main-content {
+            flex: 3;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ff7e5f;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #ff7e5f;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 1rem;
+            border-left: 5px solid #ff7e5f;
+        }
+        
+        .example {
+            background-color: #fff5f2;
+            border-left: 5px solid #ff7e5f;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .note {
+            background-color: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .note-title {
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note-title:before {
+            content: "💡";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .warning {
+            background-color: #ffe6e6;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .warning-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            background-color: #e6f7e6;
+            border-left: 5px solid #2ecc71;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .success-title {
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .success-title:before {
+            content: "✅";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .visual-example {
+            background-color: #f8f9fa;
+            border: 2px dashed #ff7e5f;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: #ff7e5f;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .tag-demo {
+            display: inline-block;
+            background: #ff7e5f;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .demo-box {
+            border: 2px solid #ff7e5f;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fff9f7;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: static;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>HTML高级教程</h1>
+                <p>从基础到进阶 - 用简单的方式学习高级HTML概念</p>
+                <a href="#semantic" class="cta-button">开始进阶学习 →</a>
+            </div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#semantic">语义化标签</a></li>
+                <li><a href="#forms">高级表单</a></li>
+                <li><a href="#multimedia">多媒体</a></li>
+                <li><a href="#accessibility">无障碍访问</a></li>
+                <li><a href="#seo">SEO优化</a></li>
+                <li><a href="#advanced">高级技巧</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <aside class="sidebar">
+                <h3>高级内容目录</h3>
+                <ul>
+                    <li><a href="#semantic">语义化HTML</a></li>
+                    <li><a href="#forms">高级表单元素</a></li>
+                    <li><a href="#validation">表单验证</a></li>
+                    <li><a href="#audio-video">音频和视频</a></li>
+                    <li><a href="#canvas">Canvas绘图</a></li>
+                    <li><a href="#accessibility">无障碍访问基础</a></li>
+                    <li><a href="#aria">ARIA角色</a></li>
+                    <li><a href="#seo">SEO优化技巧</a></li>
+                    <li><a href="#metadata">元数据优化</a></li>
+                    <li><a href="#web-components">Web组件</a></li>
+                    <li><a href="#performance">性能优化</a></li>
+                    <li><a href="#best-practices">最佳实践</a></li>
+                </ul>
+            </aside>
+            
+            <main class="main-content">
+                <section id="semantic">
+                    <h2>语义化HTML</h2>
+                    <p>语义化HTML使用有意义的标签来描述内容，让浏览器和搜索引擎更好地理解网页结构。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把网页想象成一篇文章：</p>
+                        <ul>
+                            <li><strong>&lt;header&gt;</strong> = 文章标题和作者信息</li>
+                            <li><strong>&lt;nav&gt;</strong> = 目录或导航菜单</li>
+                            <li><strong>&lt;main&gt;</strong> = 文章主要内容</li>
+                            <li><strong>&lt;article&gt;</strong> = 独立的文章块</li>
+                            <li><strong>&lt;footer&gt;</strong> = 文章结尾或版权信息</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>语义化标签示例</h3>
+                    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;title&gt;我的博客&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;我的技术博客&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#home"&gt;首页&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#about"&gt;关于&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h2&gt;HTML5语义化标签详解&lt;/h2&gt;
+                &lt;p&gt;发布日期: &lt;time datetime="2025-10-06"&gt;2025年10月6日&lt;/time&gt;&lt;/p&gt;
+            &lt;/header&gt;
+            
+            &lt;section&gt;
+                &lt;h3&gt;什么是语义化HTML&lt;/h3&gt;
+                &lt;p&gt;语义化HTML是指使用恰当的HTML标签来表达内容的含义...&lt;/p&gt;
+            &lt;/section&gt;
+            
+            &lt;aside&gt;
+                &lt;h4&gt;相关文章&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;CSS布局技巧&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/aside&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2025 我的博客. 保留所有权利.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                    
+                    <div class="success">
+                        <div class="success-title">语义化的好处</div>
+                        <ul>
+                            <li><strong>更好的SEO</strong>：搜索引擎更容易理解内容</li>
+                            <li><strong>更好的可访问性</strong>：屏幕阅读器能更好地导航</li>
+                            <li><strong>更易维护</strong>：代码结构清晰，容易理解</li>
+                            <li><strong>未来友好</strong>：适应新的浏览器和设备</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="forms">
+                    <h2>高级表单元素</h2>
+                    <p>HTML5引入了许多新的表单元素和输入类型，让表单更强大、更易用。</p>
+                    
+                    <h3>新的输入类型</h3>
+                    <div class="code-block">&lt;!-- 邮箱输入 --&gt;
+&lt;label for="email"&gt;邮箱:&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required&gt;
+
+&lt;!-- 网址输入 --&gt;
+&lt;label for="url"&gt;个人网站:&lt;/label&gt;
+&lt;input type="url" id="url" name="url"&gt;
+
+&lt;!-- 电话输入 --&gt;
+&lt;label for="tel"&gt;电话号码:&lt;/label&gt;
+&lt;input type="tel" id="tel" name="tel"&gt;
+
+&lt;!-- 数字输入 --&gt;
+&lt;label for="quantity"&gt;数量:&lt;/label&gt;
+&lt;input type="number" id="quantity" name="quantity" min="1" max="10"&gt;
+
+&lt;!-- 范围滑块 --&gt;
+&lt;label for="volume"&gt;音量:&lt;/label&gt;
+&lt;input type="range" id="volume" name="volume" min="0" max="100"&gt;
+
+&lt;!-- 颜色选择 --&gt;
+&lt;label for="color"&gt;选择颜色:&lt;/label&gt;
+&lt;input type="color" id="color" name="color"&gt;
+
+&lt;!-- 日期选择 --&gt;
+&lt;label for="birthday"&gt;生日:&lt;/label&gt;
+&lt;input type="date" id="birthday" name="birthday"&gt;</div>
+                    
+                    <div class="visual-example">
+                        <form style="text-align: left; max-width: 400px; margin: 0 auto;">
+                            <div style="margin-bottom: 15px;">
+                                <label for="demo-email">邮箱:</label><br>
+                                <input type="email" id="demo-email" style="width: 100%; padding: 8px; margin-top: 5px;">
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label for="demo-quantity">数量 (1-10):</label><br>
+                                <input type="number" id="demo-quantity" min="1" max="10" style="width: 100%; padding: 8px; margin-top: 5px;">
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label for="demo-volume">音量:</label><br>
+                                <input type="range" id="demo-volume" min="0" max="100" style="width: 100%; margin-top: 5px;">
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label for="demo-color">选择颜色:</label><br>
+                                <input type="color" id="demo-color" style="margin-top: 5px;">
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <h3 id="validation">表单验证</h3>
+                    <p>HTML5提供了内置的表单验证功能，无需JavaScript即可实现基本验证。</p>
+                    
+                    <div class="code-block">&lt;form&gt;
+    &lt;!-- 必填字段 --&gt;
+    &lt;label for="name"&gt;姓名 (必填):&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+    
+    &lt;!-- 最小长度 --&gt;
+    &lt;label for="password"&gt;密码 (最少8位):&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" minlength="8" required&gt;
+    
+    &lt;!-- 模式匹配 --&gt;
+    &lt;label for="zipcode"&gt;邮政编码 (6位数字):&lt;/label&gt;
+    &lt;input type="text" id="zipcode" name="zipcode" pattern="[0-9]{6}" required&gt;
+    
+    &lt;!-- 自定义验证消息 --&gt;
+    &lt;input type="text" oninvalid="this.setCustomValidity('请填写此字段')" 
+           oninput="this.setCustomValidity('')" required&gt;
+    
+    &lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;/form&gt;</div>
+                    
+                    <div class="note">
+                        <div class="note-title">验证属性说明</div>
+                        <ul>
+                            <li><strong>required</strong> - 字段必须填写</li>
+                            <li><strong>minlength/maxlength</strong> - 最小/最大字符数</li>
+                            <li><strong>min/max</strong> - 数字的最小/最大值</li>
+                            <li><strong>pattern</strong> - 正则表达式验证</li>
+                            <li><strong>title</strong> - 验证失败时显示的提示信息</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="multimedia">
+                    <h2>多媒体元素</h2>
+                    <p>HTML5让在网页中嵌入音频和视频变得非常简单。</p>
+                    
+                    <h3 id="audio-video">音频和视频</h3>
+                    <div class="code-block">&lt;!-- 音频播放 --&gt;
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    您的浏览器不支持音频播放。
+&lt;/audio&gt;
+
+&lt;!-- 视频播放 --&gt;
+&lt;video width="640" height="360" controls poster="preview.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    您的浏览器不支持视频播放。
+&lt;/video&gt;
+
+&lt;!-- 带字幕的视频 --&gt;
+&lt;video controls&gt;
+    &lt;source src="movie.mp4" type="video/mp4"&gt;
+    &lt;track src="subtitles-zh.vtt" kind="subtitles" srclang="zh" label="中文"&gt;
+    &lt;track src="subtitles-en.vtt" kind="subtitles" srclang="en" label="English"&gt;
+&lt;/video&gt;</div>
+                    
+                    <div class="visual-example">
+                        <div style="background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                            <p><strong>音频播放器示例:</strong></p>
+                            <audio controls style="width: 100%; margin: 10px 0;">
+                                <source src="../assets/music/teeth.mp3" type="audio/mpeg">
+                                您的浏览器不支持音频播放。
+                            </audio>
+                        </div>
+                        <div style="background: #f0f0f0; padding: 20px; border-radius: 10px;">
+                            <p><strong>视频播放器示例:</strong></p>
+                            <video width="640" height="360" controls poster="../assets/images/preview.jpg" style="width: 100%;">
+                                <source src="../assets/video/teeth.mp4" type="video/mp4">
+                                您的浏览器不支持视频播放。
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <h3 id="canvas">Canvas绘图</h3>
+                    <p>Canvas元素允许使用JavaScript在网页上绘制图形。</p>
+                    
+                    <div class="code-block">&lt;!-- 基本的Canvas元素 --&gt;
+&lt;canvas id="myCanvas" width="400" height="200"&gt;
+    您的浏览器不支持Canvas。
+&lt;/canvas&gt;
+
+&lt;script&gt;
+    // 获取Canvas元素
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // 绘制矩形
+    ctx.fillStyle = 'red';
+    ctx.fillRect(10, 10, 100, 50);
+    
+    // 绘制圆形
+    ctx.beginPath();
+    ctx.arc(200, 60, 30, 0, Math.PI * 2);
+    ctx.fillStyle = 'blue';
+    ctx.fill();
+    
+    // 绘制文本
+    ctx.font = '20px Arial';
+    ctx.fillStyle = 'green';
+    ctx.fillText('Hello Canvas!', 250, 60);
+&lt;/script&gt;</div>
+                    
+                    <div class="visual-example">
+                        <canvas id="demoCanvas" width="400" height="200" style="border: 1px solid #ddd; max-width: 100%;"></canvas>
+                        <script>
+                            const canvas = document.getElementById('demoCanvas');
+                            const ctx = canvas.getContext('2d');
+                            
+                            // 绘制矩形
+                            ctx.fillStyle = 'red';
+                            ctx.fillRect(10, 10, 100, 50);
+                            
+                            // 绘制圆形
+                            ctx.beginPath();
+                            ctx.arc(200, 60, 30, 0, Math.PI * 2);
+                            ctx.fillStyle = 'blue';
+                            ctx.fill();
+                            
+                            // 绘制文本
+                            ctx.font = '20px Arial';
+                            ctx.fillStyle = 'green';
+                            ctx.fillText('Hello Canvas!', 250, 60);
+                        </script>
+                    </div>
+                </section>
+                
+                <section id="accessibility">
+                    <h2>无障碍访问</h2>
+                    <p>无障碍访问确保所有人都能使用你的网站，包括残障人士。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">为什么重要？</div>
+                        <p>无障碍访问不仅是一种道德责任，在很多国家还是法律要求。它让以下用户也能使用你的网站：</p>
+                        <ul>
+                            <li>视力障碍用户（使用屏幕阅读器）</li>
+                            <li>听力障碍用户（需要字幕）</li>
+                            <li>运动障碍用户（只能使用键盘）</li>
+                            <li>认知障碍用户（需要清晰的结构）</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>基础无障碍技巧</h3>
+                    <div class="code-block">&lt;!-- 使用语义化标签 --&gt;
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#home"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- 为图片提供alt文本 --&gt;
+&lt;img src="logo.png" alt="公司Logo - 返回首页"&gt;
+
+&lt;!-- 为表单元素提供标签 --&gt;
+&lt;label for="search"&gt;搜索:&lt;/label&gt;
+&lt;input type="text" id="search" name="search"&gt;
+
+&lt;!-- 使用足够的颜色对比度 --&gt;
+&lt;p style="color: #000; background: #fff;"&gt;高对比度文本&lt;/p&gt;
+
+&lt;!-- 确保键盘可访问 --&gt;
+&lt;button onclick="doSomething()" tabindex="0"&gt;可点击按钮&lt;/button&gt;</div>
+                    
+                    <h3 id="aria">ARIA角色和属性</h3>
+                    <p>ARIA（可访问的富互联网应用程序）提供额外的语义信息。</p>
+                    
+                    <div class="code-block">&lt;!-- 定义地标区域 --&gt;
+&lt;div role="banner"&gt;页面顶部区域&lt;/div&gt;
+&lt;div role="navigation"&gt;导航区域&lt;/div&gt;
+&lt;div role="main"&gt;主要内容区域&lt;/div&gt;
+
+&lt;!-- 定义组件状态 --&gt;
+&lt;button aria-expanded="false" aria-controls="dropdown1"&gt;
+    展开菜单
+&lt;/button&gt;
+&lt;ul id="dropdown1" aria-hidden="true"&gt;
+    &lt;li&gt;菜单项1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- 提供实时区域 --&gt;
+&lt;div aria-live="polite" id="status-message"&gt;
+    <!-- 动态更新的内容 -->
+&lt;/div&gt;
+
+&lt;!-- 描述元素用途 --&gt;
+&lt;button aria-label="关闭对话框"&gt;X&lt;/button&gt;</div>
+                    
+                    <div class="success">
+                        <div class="success-title">无障碍检查清单</div>
+                        <ul>
+                            <li>✅ 所有图片都有alt属性</li>
+                            <li>✅ 表单有正确的标签</li>
+                            <li>✅ 颜色对比度足够</li>
+                            <li>✅ 可以使用键盘导航</li>
+                            <li>✅ 使用语义化HTML</li>
+                            <li>✅ 提供跳过导航的链接</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="seo">
+                    <h2>SEO优化</h2>
+                    <p>SEO（搜索引擎优化）帮助你的网站在搜索引擎中获得更好的排名。</p>
+                    
+                    <h3>HTML层面的SEO技巧</h3>
+                    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;页面标题 - 包含主要关键词&lt;/title&gt;
+    &lt;meta name="description" content="页面描述，包含关键词，150字符左右"&gt;
+    &lt;meta name="keywords" content="关键词1, 关键词2, 关键词3"&gt;
+    &lt;meta name="author" content="作者名"&gt;
+    
+    &lt;!-- 开放图谱协议 (用于社交媒体分享) --&gt;
+    &lt;meta property="og:title" content="在社交媒体上显示的标题"&gt;
+    &lt;meta property="og:description" content="在社交媒体上显示的描述"&gt;
+    &lt;meta property="og:image" content="分享时显示的图片URL"&gt;
+    &lt;meta property="og:url" content="页面URL"&gt;
+    
+    &lt;!-- 规范URL --&gt;
+    &lt;link rel="canonical" href="https://example.com/页面URL"&gt;
+    
+    &lt;!-- 结构化数据 (JSON-LD) --&gt;
+    &lt;script type="application/ld+json"&gt;
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "文章标题",
+        "author": {
+            "@type": "Person",
+            "name": "作者名"
+        }
+    }
+    &lt;/script&gt;
+&lt;/head&gt;</div>
+                    
+                    <h3 id="metadata">重要的元标签</h3>
+                    <div class="demo-box">
+                        <h4>必须包含的元标签：</h4>
+                        <ul>
+                            <li><strong>title</strong> - 页面标题，包含主要关键词</li>
+                            <li><strong>description</strong> - 页面描述，吸引用户点击</li>
+                            <li><strong>viewport</strong> - 确保网站在移动设备上正常显示</li>
+                            <li><strong>charset</strong> - 字符编码，确保文字正确显示</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>内容结构优化</h3>
+                    <div class="code-block">&lt;!-- 使用正确的标题层级 --&gt;
+&lt;h1&gt;主要标题 (每个页面只有一个)&lt;/h1&gt;
+&lt;h2&gt;次级标题&lt;/h2&gt;
+&lt;h3&gt;三级标题&lt;/h3&gt;
+
+&lt;!-- 使用语义化标签 --&gt;
+&lt;article&gt;
+    &lt;header&gt;
+        &lt;h1&gt;文章标题&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;section&gt;
+        &lt;h2&gt;章节标题&lt;/h2&gt;
+        &lt;p&gt;内容段落&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/article&gt;
+
+&lt;!-- 优化图片 --&gt;
+&lt;img src="product.jpg" alt="产品名称和描述" title="产品详细说明"&gt;
+
+&lt;!-- 内部链接 --&gt;
+&lt;a href="/related-article.html" title="相关文章标题"&gt;阅读相关文章&lt;/a&gt;</div>
+                </section>
+                
+                <section id="advanced">
+                    <h2>高级技巧和最佳实践</h2>
+                    
+                    <h3 id="web-components">Web组件</h3>
+                    <p>Web组件允许创建可重用的自定义元素。</p>
+                    
+                    <div class="code-block">&lt;!-- 定义自定义元素 --&gt;
+&lt;script&gt;
+// 定义自定义元素类
+class MyComponent extends HTMLElement {
+    constructor() {
+        super();
+        // 元素初始化代码
+    }
+    
+    connectedCallback() {
+        this.innerHTML = `
+            &lt;div class="my-component"&gt;
+                &lt;h3&gt;自定义组件&lt;/h3&gt;
+                &lt;p&gt;这是一个可重用的组件&lt;/p&gt;
+            &lt;/div&gt;
+        `;
+    }
+}
+
+// 注册自定义元素
+customElements.define('my-component', MyComponent);
+&lt;/script&gt;
+
+&lt;!-- 使用自定义元素 --&gt;
+&lt;my-component&gt;&lt;/my-component&gt;</div>
+                    
+                    <h3 id="performance">性能优化</h3>
+                    <div class="code-block">&lt;!-- 图片懒加载 --&gt;
+&lt;img src="image.jpg" loading="lazy" alt="描述"&gt;
+
+&lt;!-- 预加载关键资源 --&gt;
+&lt;link rel="preload" href="critical.css" as="style"&gt;
+&lt;link rel="preload" href="critical.js" as="script"&gt;
+
+&lt;!-- 预连接重要域名 --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+
+&lt;!-- 异步加载脚本 --&gt;
+&lt;script src="script.js" async&gt;&lt;/script&gt;
+
+&lt;!-- 延迟加载非关键脚本 --&gt;
+&lt;script src="analytics.js" defer&gt;&lt;/script&gt;</div>
+                    
+                    <h3 id="best-practices">HTML最佳实践</h3>
+                    <div class="demo-box">
+                        <h4>代码质量检查清单：</h4>
+                        <ul>
+                            <li>✅ 使用语义化HTML标签</li>
+                            <li>✅ 正确嵌套标签（不交叉嵌套）</li>
+                            <li>✅ 为所有图片提供alt属性</li>
+                            <li>✅ 使用小写标签和属性</li>
+                            <li>✅ 为属性值使用引号</li>
+                            <li>✅ 确保代码缩进一致</li>
+                            <li>✅ 添加适当的注释</li>
+                            <li>✅ 验证HTML代码</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <div class="success-title">恭喜！</div>
+                        <p>你已经学习了HTML的高级概念！记住，学习网页开发是一个持续的过程。继续练习，尝试构建实际项目，你的技能会不断提升。</p>
+                        <p>下一步建议学习CSS来美化你的网页，然后学习JavaScript来添加交互功能。</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <footer>
+            <p>HTML高级教程 &copy; 2023 - 用简单的方式学习复杂概念</p>
+            <p>记住：优秀的开发者不是知道所有答案的人，而是知道如何找到答案的人。</p>
+        </footer>
+    </div>
+</body>
+</html>

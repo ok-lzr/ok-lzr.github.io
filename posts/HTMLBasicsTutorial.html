@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML入门教程 - 零基础学习网页制作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ff7e5f;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: #ff6b4a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.6);
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 10px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        nav a:hover {
+            background-color: #3498db;
+        }
+        
+        .content {
+            display: flex;
+            padding: 30px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-right: 30px;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.4rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .sidebar li:before {
+            content: "•";
+            color: #3498db;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .sidebar a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+        
+        .sidebar a:hover {
+            background-color: #e1f0fa;
+            transform: translateX(5px);
+        }
+        
+        .main-content {
+            flex: 3;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 1rem;
+            border-left: 5px solid #3498db;
+        }
+        
+        .example {
+            background-color: #f0f7ff;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .note {
+            background-color: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .note-title {
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note-title:before {
+            content: "💡";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .warning {
+            background-color: #ffe6e6;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .warning-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title:before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            background-color: #e6f7e6;
+            border-left: 5px solid #2ecc71;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .success-title {
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .success-title:before {
+            content: "✅";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .visual-example {
+            background-color: #f8f9fa;
+            border: 2px dashed #3498db;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .tag-demo {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: static;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>HTML入门教程</h1>
+                <p>专为零基础初学者设计 - 轻松学会制作网页</p>
+                <a href="#start" class="cta-button">开始学习 →</a>
+            </div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#what-is-html">什么是HTML</a></li>
+                <li><a href="#first-page">第一个网页</a></li>
+                <li><a href="#basic-tags">基础标签</a></li>
+                <li><a href="#links-images">链接与图片</a></li>
+                <li><a href="#lists">列表</a></li>
+                <li><a href="#practice">动手练习</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <aside class="sidebar">
+                <h3>学习路线</h3>
+                <ul>
+                    <li><a href="#what-is-html">什么是HTML？</a></li>
+                    <li><a href="#first-page">创建第一个网页</a></li>
+                    <li><a href="#basic-structure">网页基本结构</a></li>
+                    <li><a href="#text-tags">文本标签</a></li>
+                    <li><a href="#links">超链接</a></li>
+                    <li><a href="#images">插入图片</a></li>
+                    <li><a href="#lists">创建列表</a></li>
+                    <li><a href="#practice">动手练习</a></li>
+                    <li><a href="#next-steps">下一步学习</a></li>
+                </ul>
+            </aside>
+            
+            <main class="main-content">
+                <section id="what-is-html">
+                    <h2>什么是HTML？</h2>
+                    <p>HTML是网页的"骨架"，它告诉浏览器如何显示网页内容。</p>
+                    
+                    <div class="note">
+                        <div class="note-title">简单理解</div>
+                        <p>把网页想象成一座房子：</p>
+                        <ul>
+                            <li><strong>HTML</strong> = 房子的骨架和结构（墙、门、窗）</li>
+                            <li><strong>CSS</strong> = 房子的装修和外观（颜色、样式）</li>
+                            <li><strong>JavaScript</strong> = 房子的功能（电灯、开关）</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>HTML是什么意思？</h3>
+                    <p>HTML是<strong>超文本标记语言</strong>的缩写：</p>
+                    <ul>
+                        <li><strong>超文本</strong>：可以包含链接到其他页面的文本</li>
+                        <li><strong>标记</strong>：使用标签来标记内容</li>
+                        <li><strong>语言</strong>：计算机能理解的语言</li>
+                    </ul>
+                    
+                    <div class="success">
+                        <div class="success-title">好消息！</div>
+                        <p>HTML非常容易学习！你不需要任何编程经验，只需要会打字就能开始。</p>
+                    </div>
+                </section>
+                
+                <section id="first-page">
+                    <h2>创建第一个网页</h2>
+                    <p>让我们创建一个简单的网页，只需要3步：</p>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>打开文本编辑器</h3>
+                            <p>在你的电脑上打开任何一个文本编辑器：</p>
+                            <ul>
+                                <li>Windows: 记事本 (Notepad)</li>
+                                <li>Mac: 文本编辑 (TextEdit)</li>
+                                <li>或者使用更专业的编辑器如VS Code（推荐）</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>输入以下代码</h3>
+                            <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;我的第一个网页&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;你好，世界！&lt;/h1&gt;
+    &lt;p&gt;这是我的第一个网页。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>保存并查看</h3>
+                            <p>将文件保存为 <strong>"index.html"</strong>，然后用浏览器打开它。</p>
+                            <div class="visual-example">
+                                <h1>你好，世界！</h1>
+                                <p>这是我的第一个网页。</p>
+                            </div>
+                            <p>恭喜！你刚刚创建了第一个网页！</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="basic-structure">
+                    <h2>网页基本结构</h2>
+                    <p>每个HTML网页都有相同的基本结构：</p>
+                    
+                    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;网页标题&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 这里放网页内容 --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                    
+                    <h3>各部分的作用：</h3>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>&lt;!DOCTYPE html&gt;</h3>
+                            <p>告诉浏览器这是HTML5文档</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>&lt;html&gt;&lt;/html&gt;</h3>
+                            <p>整个网页的容器，所有内容都放在这里面</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>&lt;head&gt;&lt;/head&gt;</h3>
+                            <p>包含网页的"元信息"，如标题、字符编码等（用户看不到）</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>&lt;title&gt;&lt;/title&gt;</h3>
+                            <p>定义浏览器标签页上显示的标题</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>&lt;body&gt;&lt;/body&gt;</h3>
+                            <p>包含所有用户能看到的内容（文字、图片、链接等）</p>
+                        </div>
+                    </div>
+                    
+                    <div class="note">
+                        <div class="note-title">记住这个结构！</div>
+                        <p>每个HTML文档都遵循这个基本结构。你可以把它当作模板，每次创建新网页时使用。</p>
+                    </div>
+                </section>
+                
+                <section id="text-tags">
+                    <h2>文本标签</h2>
+                    <p>HTML使用标签来格式化文本。标签通常成对出现：开始标签和结束标签。</p>
+                    
+                    <div class="example">
+                        <div class="example-title">标签示例：</div>
+                        <p><span class="tag-demo">&lt;p&gt;</span>这是一个段落<span class="tag-demo">&lt;/p&gt;</span></p>
+                        <p>开始标签 → <span class="tag-demo">&lt;p&gt;</span></p>
+                        <p>内容 → 这是一个段落</p>
+                        <p>结束标签 → <span class="tag-demo">&lt;/p&gt;</span></p>
+                    </div>
+                    
+                    <h3>常用文本标签：</h3>
+                    
+                    <div class="code-block">&lt;h1&gt;这是一个大标题&lt;/h1&gt;
+&lt;h2&gt;这是一个副标题&lt;/h2&gt;
+&lt;h3&gt;这是一个小标题&lt;/h3&gt;
+
+&lt;p&gt;这是一个段落。&lt;/p&gt;
+
+&lt;strong&gt;这是粗体文本&lt;/strong&gt;
+
+&lt;em&gt;这是斜体文本&lt;/em&gt;
+
+&lt;br&gt;  &lt;!-- 换行（注意：这是空标签，没有结束标签） --&gt;
+
+&lt;hr&gt;  &lt;!-- 水平线（也是空标签） --&gt;</div>
+                    
+                    <div class="visual-example">
+                        <h1>这是一个大标题</h1>
+                        <h2>这是一个副标题</h2>
+                        <h3>这是一个小标题</h3>
+                        <p>这是一个段落。</p>
+                        <p><strong>这是粗体文本</strong></p>
+                        <p><em>这是斜体文本</em></p>
+                        <p>第一行<br>第二行（换行后）</p>
+                        <hr>
+                        <p>水平线上面</p>
+                    </div>
+                    
+                    <div class="note">
+                        <div class="note-title">小贴士</div>
+                        <p>HTML有6级标题：&lt;h1&gt; 到 &lt;h6&gt;，其中 &lt;h1&gt; 最重要（字体最大），&lt;h6&gt; 最不重要（字体最小）。</p>
+                    </div>
+                </section>
+                
+                <section id="links">
+                    <h2>超链接</h2>
+                    <p>超链接让你可以从一个网页跳转到另一个网页。</p>
+                    
+                    <div class="code-block">&lt;a href="https://space.bilibili.com/3546885065279877"&gt;点击这里访问示例网站&lt;/a&gt;</div>
+                    
+                    <div class="visual-example">
+                        <a href="https://space.bilibili.com/3546885065279877" style="color: #3498db; text-decoration: underline;">点击这里访问示例网站</a>
+                    </div>
+                    
+                    <h3>链接的组成部分：</h3>
+                    <ul>
+                        <li><strong>&lt;a&gt;</strong> - 链接标签</li>
+                        <li><strong>href</strong> - 属性，指定链接的目标地址</li>
+                        <li><strong>链接文本</strong> - 用户点击的文字</li>
+                    </ul>
+                    
+                    <h3>不同类型的链接：</h3>
+                    
+                    <div class="code-block">&lt;!-- 链接到其他网站 --&gt;
+&lt;a href="https://space.bilibili.com/3546885065279877"&gt;访问一名B站UP主的空间&lt;/a&gt;
+
+&lt;!-- 链接到其他网页 --&gt;
+&lt;a href="about.html"&gt;关于我们&lt;/a&gt;
+
+&lt;!-- 链接到邮箱 --&gt;
+&lt;a href="mailto:csgdnrxg@163.com"&gt;发送邮件&lt;/a&gt;</div>
+                    
+                    <div class="warning">
+                        <div class="warning-title">重要提醒</div>
+                        <p>不要忘记在网址前加上 http:// 或 https://，否则链接可能无法正常工作！</p>
+                    </div>
+                </section>
+                
+                <section id="images">
+                    <h2>插入图片</h2>
+                    <p>使用 &lt;img&gt; 标签在网页中显示图片。</p>
+                    
+                    <div class="code-block">&lt;img src="图片地址" alt="图片描述"&gt;</div>
+                    
+                    <div class="visual-example">
+                        <img src="../assets/image/example.jpg" alt="示例图片" style="max-width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+                        <p style="margin-top: 10px; font-style: italic;">示例图片</p>
+                    </div>
+                    
+                    <h3>图片标签的组成部分：</h3>
+                    <ul>
+                        <li><strong>&lt;img&gt;</strong> - 图片标签（注意：这是空标签，没有结束标签）</li>
+                        <li><strong>src</strong> - 属性，指定图片的位置</li>
+                        <li><strong>alt</strong> - 属性，提供图片的文字描述（如果图片无法显示，会显示这段文字）</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <div class="note-title">最佳实践</div>
+                        <p>始终为图片添加alt属性，这有助于：</p>
+                        <ul>
+                            <li>视力障碍用户使用屏幕阅读器</li>
+                            <li>图片无法加载时显示替代文本</li>
+                            <li>搜索引擎理解图片内容</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="lists">
+                    <h2>创建列表</h2>
+                    <p>HTML可以创建两种主要类型的列表：有序列表和无序列表。</p>
+                    
+                    <h3>无序列表（带项目符号）</h3>
+                    <div class="code-block">&lt;ul&gt;
+    &lt;li&gt;苹果&lt;/li&gt;
+    &lt;li&gt;香蕉&lt;/li&gt;
+    &lt;li&gt;橙子&lt;/li&gt;
+&lt;/ul&gt;</div>
+                    
+                    <div class="visual-example" style="text-align: left;">
+                        <ul>
+                            <li>苹果</li>
+                            <li>香蕉</li>
+                            <li>橙子</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>有序列表（带数字编号）</h3>
+                    <div class="code-block">&lt;ol&gt;
+    &lt;li&gt;第一步：学习HTML&lt;/li&gt;
+    &lt;li&gt;第二步：学习CSS&lt;/li&gt;
+    &lt;li&gt;第三步：学习JavaScript&lt;/li&gt;
+&lt;/ol&gt;</div>
+                    
+                    <div class="visual-example" style="text-align: left;">
+                        <ol>
+                            <li>第一步：学习HTML</li>
+                            <li>第二步：学习CSS</li>
+                            <li>第三步：学习JavaScript</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="note">
+                        <div class="note-title">标签说明</div>
+                        <ul>
+                            <li><strong>&lt;ul&gt;</strong> - 无序列表 (Unordered List)</li>
+                            <li><strong>&lt;ol&gt;</strong> - 有序列表 (Ordered List)</li>
+                            <li><strong>&lt;li&gt;</strong> - 列表项 (List Item)</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="practice">
+                    <h2>动手练习</h2>
+                    <p>现在让我们把学到的知识用起来！创建一个简单的个人介绍页面。</p>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>复制以下代码</h3>
+                            <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;我的个人主页&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;欢迎来到我的主页&lt;/h1&gt;
+    &lt;h2&gt;关于我&lt;/h2&gt;
+    &lt;p&gt;大家好！我是&lt;strong&gt;[你的名字]&lt;/strong&gt;。&lt;/p&gt;
+    &lt;p&gt;这是我的第一个网页，我正在学习HTML。&lt;/p&gt;
+    
+    &lt;h2&gt;我的爱好&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;阅读&lt;/li&gt;
+        &lt;li&gt;旅行&lt;/li&gt;
+        &lt;li&gt;编程&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;h2&gt;我喜欢的网站&lt;/h2&gt;
+    &lt;p&gt;访问&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;&lt;/p&gt;
+    
+    &lt;hr&gt;
+    &lt;p&gt;感谢访问我的网页！&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>修改内容</h3>
+                            <p>将 <strong>[你的名字]</strong> 替换成你自己的名字，也可以修改爱好的内容。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>保存并查看</h3>
+                            <p>将文件保存为 "mypage.html"，然后用浏览器打开它。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="success">
+                        <div class="success-title">太棒了！</div>
+                        <p>你刚刚创建了自己的第一个网页！继续尝试添加更多内容，比如图片、更多链接或改变文本样式。</p>
+                    </div>
+                </section>
+                
+                <section id="next-steps">
+                    <h2>下一步学习什么？</h2>
+                    <p>恭喜你完成了HTML基础学习！接下来你可以：</p>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>学习CSS</h3>
+                            <p>CSS可以让你的网页变得漂亮！学习如何改变颜色、字体、布局等。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>学习更多HTML标签</h3>
+                            <p>了解更多HTML标签，如表单、表格、音频和视频等。</p>
+                            <a href = "HTMLAdvancedTutorial.html">开始学习→</a>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>实践项目</h3>
+                            <p>尝试创建更多网页，如个人简历、产品介绍页或博客页面。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="note">
+                        <div class="note-title">学习资源</div>
+                        <p>网上有很多免费的学习资源：</p>
+                        <ul>
+                            <li>MDN Web Docs (Mozilla开发者网络)</li>
+                            <li>W3Schools在线教程</li>
+                            <li>freeCodeCamp项目式学习</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <div class="success-title">记住</div>
+                        <p>学习编程最好的方法就是动手实践！不要害怕犯错，每个程序员都是从错误中学习的。</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <footer>
+            <p>HTML入门教程 &copy; 2025 - 专为零基础初学者设计</p>
+            <p>记住：每个专家都曾经是初学者，坚持下去，你也能成为网页制作高手！</p>
+        </footer>
+    </div>
+</body>
+</html>
